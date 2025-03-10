@@ -8,8 +8,8 @@ namespace ConsoleApp14
 {
     public class Product {
         public string Name { get; set; }
-        double Price { get; set; }
-        int Quantity { get; set; }
+        public double Price { get; set; }
+        public int Quantity { get; set; }
 
         public Product(string name, double price, int quantity)
         {
@@ -35,15 +35,25 @@ namespace ConsoleApp14
     {
             static void Main(string[] args)
             {
-                Product pr1 = new Product("Apple", 2, 10);
-                Product pr2 = new Product("Notebook", 100, 2);
-                Product pr3 = new Product("T-Shirt", 15, 6);
-            
-            Console.WriteLine($"{pr1.Name}: {pr1.TotalPrice()}$");
-            Console.WriteLine($"{pr2.Name}: {pr2.TotalPrice()}$");
-            Console.WriteLine($"{pr3.Name}: {pr3.TotalPrice()}$");
+            List<Product> cart = new List<Product>();
+            cart.Add(new Product("Apple", 2, 10));
+            cart.Add(new Product("Notebook", 100, 2));
+            cart.Add(new Product("T-Shirt", 15, 6));
 
+            double total_cost = 0;
+
+            foreach (Product product in cart)
+            {
+                double productTotal = product.TotalPrice();
+                total_cost += productTotal;
+                Console.WriteLine($"{product.Name}: {productTotal}$");
+           
+            }
+
+            Console.WriteLine("Total Cost: " + total_cost + "$");
             Console.ReadLine();
+
+              
             }
         }
     }
